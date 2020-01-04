@@ -71,10 +71,7 @@
                   oculus-touch-controls="hand: right"
                   windows-motion-controls="hand: right">
         </a-entity>
-        <a-entity id="lhand" mixin="touch"
-                  vive-controls="hand: left"
-                  oculus-touch-controls="hand: left"
-                  windows-motion-controls="hand: left">
+        <a-entity id="blockHand" hand-controls="left" laser-controls intersection-spawn="event: click"></a-entity>
         </a-entity>
       </a-entity>
       <a-entity class="cube" mixin="cube" position="0 0.265 -1" material="color: red"></a-entity>
@@ -95,6 +92,20 @@
               position = "0 1.6 0.7" rotation="0 0 0" scale="0.25 0.25 0.25">
       </a-link>
     </a-scene>
+
+    <script>
+      document.querySelector('#blockHand').addEventListener(`click`, function (evt) {
+  // Create a blank entity.
+  var newVoxelEl = document.createElement('a-cube');
+
+  // Set the position using intersection point. The `snap` component above which
+  // is part of the mixin will snap it to the closest half meter.
+  newVoxelEl.setAttribute('position', evt.detail.intersection.point);
+
+  // Add to the scene with `appendChild`.
+  this.appendChild(newVoxelEl);
+});
+</script>
 
     <!-- GitHub Corner. -->
     <a href="https://github.com/wmurphyrd/aframe-super-hands-component" class="github-corner">
