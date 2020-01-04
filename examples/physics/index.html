@@ -40,7 +40,7 @@
     <button id="replayer-button" type="button" onclick="playDemoRecording()">
       Don't have roomscale VR handy? Click here for a preview.
     </button>
-    <a-scene physics environment="preset: tron; shadow: true">
+    <a-scene id="scen" physics environment="preset: tron; shadow: true">
       <a-assets>
         <img id="portals-preview" src="../assets/hand-controls.jpg"></img>
         <img id="colortransform" src="./colortransform.png" />
@@ -71,7 +71,7 @@
                   oculus-touch-controls="hand: right"
                   windows-motion-controls="hand: right">
         </a-entity>
-        <a-entity id="blockHand" hand-controls="left" laser-controls intersection-spawn="event: click"></a-entity>
+        <a-entity id="blockHand" hand-controls="left" laser-controls controller-cursor intersection-spawn="event: click"></a-entity>
         </a-entity>
       </a-entity>
       <a-entity class="cube" mixin="cube" position="0 0.265 -1" material="color: red"></a-entity>
@@ -103,7 +103,7 @@
   newVoxelEl.setAttribute('position', evt.detail.intersection.point);
 
   // Add to the scene with `appendChild`.
-  this.appendChild(newVoxelEl);
+  document.getElementById("scen").appendChild(newVoxelEl);
 });
 </script>
 
