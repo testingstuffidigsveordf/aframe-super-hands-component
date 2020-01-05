@@ -121,16 +121,7 @@
  var sceneEl = document.querySelector('a-scene');
       var entityEl = document.createElement('a-entity');
       // Do `.setAttribute()`s to initialize the entity.
-      entityEl.setAttribute('geometry', {
-        primitive: 'box',
-        height: 1,
-        width: 1
-       });
-      entityEl.setAttribute('dynamic-body', {
-        shape: 'box',
-        mass: 1.5,
-        linearDamping: 0.005
-      });
+      entityEl.setAttribute('mixin', 'cube');
       entityEl.setAttribute('position', {x: evt.detail.intersection.point["x"], y: evt.detail.intersection.point["y"]+1, z: evt.detail.intersection.point["z"]});
       
       sceneEl.appendChild(entityEl);
