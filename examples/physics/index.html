@@ -74,6 +74,9 @@
         <a-entity id="blockHand" hand-controls="left" laser-controls controller-cursor intersection-spawn="event: click"></a-entity>
         </a-entity>
       </a-entity>
+      <a-entity struct0 id="s0"></a-entity>
+      <a-entity struct1 id="s1"></a-entity>
+
       <a-entity class="cube" mixin="cube" position="0 0.265 -1" material="color: red"></a-entity>
       <a-entity class="cube" mixin="cube" position="0 0.265 -0.5" material="color: red"></a-entity>
       <a-entity class="cube" mixin="cube" position="-1 0.265 -1" material="color: blue"></a-entity>
@@ -94,6 +97,13 @@
     </a-scene>
 
     <script>
+      var structnow=0;
+      document.querySelector("#blockHand").addEventListener('xbuttondown', function () {
+        if (window.structnow == 0) {window.structnow = 1; return;}
+        else {
+          if (window.structnow == 1) {window.structnow = 0; return;};
+        };
+      });
       AFRAME.registerComponent('snap', {
   dependencies: ['position'],
 
@@ -123,6 +133,12 @@
       // Do `.setAttribute()`s to initialize the entity.
       entityEl.setAttribute('mixin', 'cube');
       entityEl.setAttribute('position', {x: evt.detail.intersection.point["x"], y: evt.detail.intersection.point["y"]+0.165, z: evt.detail.intersection.point["z"]});
+      if (window.structnow == 0) {
+        sceneEl = document.getElementById("s0");
+      }
+      else {
+        sceneEl = doucment.getElementById("s1");
+      };
       
       sceneEl.appendChild(entityEl);
 });
