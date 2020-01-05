@@ -122,7 +122,7 @@
       var entityEl = document.createElement('a-entity');
       // Do `.setAttribute()`s to initialize the entity.
       entityEl.setAttribute('mixin', 'cube');
-      entityEl.setAttribute('position', {x: evt.detail.intersection.point["x"], y: evt.detail.intersection.point["y"]+1, z: evt.detail.intersection.point["z"]});
+      entityEl.setAttribute('position', {x: evt.detail.intersection.point["x"], y: evt.detail.intersection.point["y"]+0.165, z: evt.detail.intersection.point["z"]});
       
       sceneEl.appendChild(entityEl);
 });
