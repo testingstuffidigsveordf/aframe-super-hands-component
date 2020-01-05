@@ -9,5 +9,20 @@
       <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4" static-body></a-plane>
       <a-sky color="#ECECEC"></a-sky>
     </a-scene>
+    <script>
+      var sceneEl = document.querySelector('a-scene');
+      var entityEl = document.createElement('a-entity');
+      // Do `.setAttribute()`s to initialize the entity.
+      entityEl.setAttribute('geometry', {
+        primitive: 'box',
+        height: 3,
+        width: 1
+       });
+      entityEl.setAttribute('dynamic-body', {
+        shape: 'box',
+        mass: 1.5,
+        linearDamping: 0.005
+      });
+      sceneEl.appendChild(entityEl);
   </body>
 </html>
