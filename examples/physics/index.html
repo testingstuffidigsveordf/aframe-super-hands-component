@@ -94,7 +94,14 @@
     </a-scene>
 
     <script>
-      setInterval(function (){document.querySelector("a-scene").innerHTML+='<a-entity class="cube" mixin="cube" position="1 2 -0.5" material="color: green"></a-entity>';}, 2000);
+      setInterval(function (){var entityEl = document.createElement('a-entity');
+                             entityEl.setAttribute('geometry', {
+  primitive: 'cube',
+  height: 3,
+  width: 1,
+  depth: 3
+});
+                             var sceneEl = document.querySelector('a-scene');sceneEl.appendChild(entityEl);}, 2000);
 </script>
 
     <!-- GitHub Corner. -->
