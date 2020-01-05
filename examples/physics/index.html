@@ -131,7 +131,7 @@
         mass: 1.5,
         linearDamping: 0.005
       });
-      entityEl.setAttribute('position', {x: evt.detail.intersection.point[0], y: evt.detail.intersection.point[1]+1, z: evt.detail.intersection.point[2]});
+      entityEl.setAttribute('position', {x: evt.detail.intersection.point["x"], y: evt.detail.intersection.point["y"]+1, z: evt.detail.intersection.point["z"]});
       
       sceneEl.appendChild(entityEl);
 });
