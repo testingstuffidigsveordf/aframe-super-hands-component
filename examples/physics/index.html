@@ -108,7 +108,7 @@
         mass: 1.5,
         linearDamping: 0.005
       });
-      entityEl.setAttribute('position', {x: 0, y: 2, z: 0});
+      entityEl.setAttribute('position', evt.detail.intersection.point);
       sceneEl.appendChild(entityEl);
 });
 </script>
