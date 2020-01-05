@@ -94,14 +94,23 @@
     </a-scene>
 
     <script>
-      setInterval(function (){var entityEl = document.createElement('a-entity');
-                             entityEl.setAttribute('geometry', {
-  primitive: 'cube',
-  height: 3,
-  width: 1,
-  depth: 3
+      document.querySelector('#blockHand').addEventListener(`click`, function (evt) {
+ var sceneEl = document.querySelector('a-scene');
+      var entityEl = document.createElement('a-entity');
+      // Do `.setAttribute()`s to initialize the entity.
+      entityEl.setAttribute('geometry', {
+        primitive: 'box',
+        height: 3,
+        width: 1
+       });
+      entityEl.setAttribute('dynamic-body', {
+        shape: 'box',
+        mass: 1.5,
+        linearDamping: 0.005
+      });
+      entityEl.setAttribute('position', {x: 0, y: 2, z: 0});
+      sceneEl.appendChild(entityEl);
 });
-                             var sceneEl = document.querySelector('a-scene');sceneEl.appendChild(entityEl);}, 2000);
 </script>
 
     <!-- GitHub Corner. -->
