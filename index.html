@@ -5,6 +5,19 @@
     <script src="aec.js"></script>
     <script src="aecs.js"></script>
     <script src="sh.js"></script>
+    <script>
+      AFRAME.registerComponent('phase-shift', {
+        init: function () {
+          var el = this.el
+          el.addEventListener('gripdown', function () {
+            el.setAttribute('collision-filter', {collisionForces: true})
+          })
+          el.addEventListener('gripup', function () {
+            el.setAttribute('collision-filter', {collisionForces: false})
+          })
+        }
+      })
+    </script>
   </head>
   <body>
     <a-scene id="testScene" physics>
