@@ -16,7 +16,10 @@
                   oculus-touch-controls="hand: right"
                   windows-motion-controls="hand: right">
         </a-entity>
-        <a-entity id="blockHand" hand-controls="left" laser-controls controller-cursor intersection-spawn="event: click"></a-entity>
+        <a-entity id="lHand" hand-controls="left" laser-controls controller-cursor intersection-spawn="event: click" mixin="touch"
+                  vive-controls="hand: left"
+                  oculus-touch-controls="hand: left"
+                  windows-motion-controls="hand: left"></a-entity>
         </a-entity>
     </a-scene>
   </body>
