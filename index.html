@@ -31,7 +31,10 @@
                  physics-collider phase-shift
                  collision-filter="collisionForces: false"
                  static-body="shape: sphere; sphereRadius: 0.02"
-                 super-hands></a-mixin>
+                 super-hands="colliderEvent: collisions;
+                              colliderEventProperty: els;
+                              colliderEndEvent: collisions;
+                              colliderEndEventProperty: clearedEls;">
       </a-assets>
       <a-sky color="#043bae"></a-sky>
       <a-entity id="player"
