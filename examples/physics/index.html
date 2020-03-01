@@ -11,6 +11,123 @@
     <script src="https://unpkg.com/aframe-physics-extras/dist/aframe-physics-extras.min.js"></script>
     <script src="https://rawgit.com/feiss/aframe-environment-component/master/dist/aframe-environment-component.min.js"></script>
     <script>
+      AFRAME.registerComponent('color-randomizer', {
+        /*
+          color randomizer
+        */
+        play: function () {
+          this.el.addEventListener('drag-drop', function (evt) {
+            evt.detail.dropped.setAttribute('material', 'color',
+              '#'+(Math.random()*0xFFFFFF<<0).toString(16));
+          })
+        }
+      })
+      // turn controller's physics presence on only while button held down
+      AFRAME.registerComponent('phase-shift', {
+        init: function () {
+          var el = this.el;
+          el.addEventListener('gripdown', function () {
+            el.setAttribute('collision-filter', {collisionForces: true});
+          })
+          el.addEventListener('gripup', function () {
+            el.setAttribute('collision-filter', {collisionForces: false});
+          })
+        }
+      })
+    </script>
+  </head>
+  <body>
+    <a-scene id="scen" physics environment="preset: tron; shadow: true">
+      <a-assets>
+        <a-mixin id="cube" geometry="primitive: box; width: 0.33; height: 0.33; depth: 0.33"
+                 hoverable grabbable stretchable draggable
+                 event-set__hoveron="_event: hover-start; material.opacity: 0.7; transparent: true"
+                 event-set__hoveroff="_event: hover-end; material.opacity: 1; transparent: false"
+                 dynamic-body shadow></a-mixin>
+        <a-mixin id="sphere" geometry="primitive: sphere; radius: 0.2"
+                 hoverable grabbable stretchable draggable
+                 event-set__hoveron="_event: hover-start; material.opacity: 0.7; transparent: true"
+                 event-set__hoveroff="_event: hover-end; material.opacity: 1; transparent: false"
+                 dynamic-body shadow></a-mixin>
+        <a-mixin id="cone" geometry="primitive: cone; radius-bottom: 0.165, radius-top: 0; height: 0.5"
+                 hoverable grabbable stretchable draggable
+                 event-set__hoveron="_event: hover-start; material.opacity: 0.7; transparent: true"
+                 event-set__hoveroff="_event: hover-end; material.opacity: 1; transparent: false"
+                 dynamic-body shadow></a-mixin>
+        <a-mixin id="cylinder" geometry="primitive: cylinder; radius: 0.2, height: 0.33"
+                 hoverable grabbable stretchable draggable
+                 event-set__hoveron="_event: hover-start; material.opacity: 0.7; transparent: true"
+                 event-set__hoveroff="_event: hover-end; material.opacity: 1; transparent: false"
+                 dynamic-body shadow></a-mixin>
+        <a-mixin id="touch"
+                 physics-collider phase-shift
+                 collision-filter="collisionForces: false"
+                 static-body="shape: sphere; sphereRadius: 0.02"
+                 super-hands="colliderEvent: collisions;
+                              colliderEventProperty: els;
+                              colliderEndEvent: collisions;
+                              colliderEndEventProperty: clearedEls;">
+        </a-mixin>
+      </a-assets>
+      <a-entity>
+        <a-camera positon="0 1.6 0"></a-camera>
+        <a-entity id="rhand" mixin="touch"
+                  vive-controls="hand: right"
+                  oculus-touch-controls="hand: right"
+                  windows-motion-controls="hand: right">
+        </a-entity>
+        <a-entity id="blockHand" hand-controls="left" laser-controls controller-cursor intersection-spawn="event: click"></a-entity>
+        </a-entity>
+      </a-entity>
+      <!-- make shit not fall -->
+      <a-box static-body width=100 height=0.001 depth=100 visible="false"></a-box>
+      </a-link>
+    </a-scene>
+
+    <script>
+      var structnow=0;
+      document.querySelector("#blockHand").addEventListener('xbuttondown', function () {
+        /*
+          increment and keep within 4
+        */
+        window.structnow += 1;
+        window.structnow %= 4;
+      });
+      document.querySelector("#blockHand").addEventListener('ybuttondown', function () {
+        /*
+          decrement and keep within 4
+        */
+        window.structnow -= 1;
+        window.structnow %= 4;
+      });
+      
+      document.querySelector('#blockHand').addEventListener(`click`, function (evt) {
+        var sceneEl = document.querySelector('a-scene');
+        var entityEl = document.createElement('a-entity');
+        entityEl.setAttribute('position', {x: evt.detail.intersection.point["x"], y: evt.detail.intersection.point["y"]+0.165, z: evt.detail.intersection.point["z"]}); // put it a little high, so as to not glitch the fuck out
+        if (window.structnow == 0) {
+          entityEl.setAttribute('mixin', 'cube'); // make a cube
+        }
+        else if (window.structnow == 1) {
+          entityEl.setAttribute('mixin', 'sphere'); // set to sphere
+        }
+        else if (window.structnow == 2) {
+          entityEl.setAttribute('mixin', 'cone'); // set to cone
+        }
+        else if (window.structnow == 3) {
+          entityEl.setAttribute('mixin', 'cylinder'); // set to cylinder
+        }
+        else {
+          console.log("something fucking broke");
+        };
+
+        sceneEl.appendChild(entityEl); // place it in the scene
+      });
+      </script>
+  </body>
+</html>
+
+    <script>
       //color randomizer
       AFRAME.registerComponent('color-randomizer', {
         play: function () {
