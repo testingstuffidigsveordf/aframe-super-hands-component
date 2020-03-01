@@ -12,8 +12,13 @@
         look-controls
         shoot="direction: 0 0 -1; spaceKeyEnabled: true">
       </a-entity>
-      <a-entity sphere-collider="objects: a-box" super-hands hand-controls="left" rotate="90 0 0"></a-entity>
-      <a-entity sphere-collider="objects: a-box" super-hands hand-controls="right" rotate="90 0 0"></a-entity>
+      <a-entity id="rhand" mixin="touch"
+                  vive-controls="hand: right"
+                  oculus-touch-controls="hand: right"
+                  windows-motion-controls="hand: right">
+        </a-entity>
+        <a-entity id="blockHand" hand-controls="left" laser-controls controller-cursor intersection-spawn="event: click"></a-entity>
+        </a-entity>
     </a-scene>
   </body>
 </html>
