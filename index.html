@@ -12,7 +12,7 @@
                  dynamic-body shadow></a-mixin>
         <a-mixin id="touch"
                  physics-collider phase-shift
-                 collision-filter="collisionForces: false"
+                 collision-filter="collisionForces: true"
                  static-body="shape: sphere; sphereRadius: 0.02"
                  super-hands="colliderEvent: collisions;
                               colliderEventProperty: els;
@@ -26,7 +26,7 @@
         look-controls
         shoot="direction: 0 0 -1; spaceKeyEnabled: true">
       </a-entity>
-      <a-entity id="rhand" mixin="touch" vive-controls="hand: right" oculus-touch-controls="hand: right" windows-motion-controls="hand: right" physics-collider="true" phase-shift="" collision-filter="true" velocity="" static-body="" super-hands="" position="">
+      <a-entity id="rhand" mixin="touch" vive-controls="hand: right" oculus-touch-controls="hand: right" windows-motion-controls="hand: right" physics-collider velocity static-body super-hands position>
         </a-entity>
       <a-entity id="blockHand" mixin="touch" hand-controls="left" laser-controls="" controller-cursor="" intersection-spawn="event: click" daydream-controls="" gearvr-controls=""oculus-touch-controls="" vive-controls="" windows-motion-controls="" physics-collider="true" phase-shift="" collision-filter="true" velocity="" static-body="" super-hands="" position=""></a-entity>
       <a-entity id="ground" type="background" static-body
