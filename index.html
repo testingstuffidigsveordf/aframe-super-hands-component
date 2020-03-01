@@ -1,9 +1,15 @@
 <html>
-<body>
-<script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script>
-<a-scene id="testScene">
-<a-entity id="leftHand" hand-controls="hand: left; handModelStyle: lowPoly; color: #ffcccc"></a-entity>
-<a-entity id="rightHand" hand-controls="hand: right; handModelStyle: lowPoly; color: #ffcccc"></a-entity>
-</a-scene>
-</body>
+  <body>
+    <script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script>
+    <a-scene id="testScene">
+      <a-entity id="player"
+        camera="userHeight: 1.6"
+        wasd-controls
+        look-controls
+        shoot="direction: 0 0 -1; spaceKeyEnabled: true">
+      </a-entity>
+      <a-entity id="leftHand" hand-controls="hand: left; handModelStyle: lowPoly; color: #ffcccc"></a-entity>
+      <a-entity id="rightHand" hand-controls="hand: right; handModelStyle: lowPoly; color: #ffcccc"></a-entity>
+    </a-scene>
+  </body>
 </html>
