@@ -11,15 +11,9 @@
         look-controls
         shoot="direction: 0 0 -1; spaceKeyEnabled: true">
       </a-entity>
-      <a-entity id="rhand" mixin="touch"
-                  vive-controls="hand: right"
-                  oculus-touch-controls="hand: right"
-                  windows-motion-controls="hand: right">
+      <a-entity id="rhand" mixin="touch" vive-controls="hand: right" oculus-touch-controls="hand: right" windows-motion-controls="hand: right" physics-collider="" phase-shift="" collision-filter="" velocity="" static-body="" super-hands="" position="">
         </a-entity>
-        <a-entity id="lhand" laser-controls controller-cursor intersection-spawn="event: click" mixin="touch"
-                  vive-controls="hand: left"
-                  oculus-touch-controls="hand: left"
-                  windows-motion-controls="hand: left"></a-entity>
-    </a-scene>
+      <a-entity id="blockHand" hand-controls="left" laser-controls="" controller-cursor="" intersection-spawn="event: click" daydream-controls="" gearvr-controls="" oculus-touch-controls="" vive-controls="" windows-motion-controls=""></a-entity>   </a-scene>
+    <script>
   </body>
 </html>
