@@ -76,7 +76,7 @@
                   oculus-touch-controls="hand: right"
                   windows-motion-controls="hand: right">
         </a-entity>
-        <a-entity id="blockHand" hand-controls="left" laser-controls controller-cursor intersection-spawn="event: click"></a-entity>
+        <a-entity id="blockHand" mixin="touch" hand-controls="left" laser-controls controller-cursor intersection-spawn="event: click"></a-entity>
         </a-entity>
       </a-entity>
       <!-- make shit not fall -->
@@ -99,6 +99,9 @@
         */
         window.structnow -= 1;
         window.structnow %= 4;
+        if (window.structnow < 0) {
+          window.structnow = 0;
+        }
       });
       
       document.querySelector('#blockHand').addEventListener(`click`, function (evt) {
